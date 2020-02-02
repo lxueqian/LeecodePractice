@@ -212,6 +212,30 @@ class Tree(object):
   nsmallest(n, iter)                                   返回iter中n个最小的元素
   heappushpop( )方法会比先使用heappush( )再使用heappop( )这两单个方法效率来说会更高 增加一个数据并维护小顶堆性质
   
+  Java PriorityQueue（优先队列）
+   实际上是一个堆（不指定Comparator时默认为最小堆）
+   队列既可以根据元素的自然顺序来排序，也可以根据 Comparator来设置排序规则。
+   队列的头是按指定排序方式的最小元素。如果多个元素都是最小值，则头是其中一个元素。
+   新建对象的时候可以指定一个初始容量，其容量会自动增加
+   min-heap:用来contains所有排出小到大，或过滤过k个最大
+   max-heap:用来contains所有排出大到小，或过滤过k个最小
+   
+   优先队列也是一种队列，只不过不同的是，优先队列的出队顺序是按照优先级来的；在有些情况下，可能需要找到元素集合中的最小或者最大元素，可以利用优先队列
+   ADT来完成操作，优先队列ADT是一种数据结构，它支持插入和删除最小值操作（返回并删除最小元素）或删除最大值操作（返回并删除最大元素）
+   
+   堆的表示：在描述堆的操作前，首先来看堆是怎样表示的，一种可能的方法就是使用数组，因为堆在形式上是一颗完全二叉树，用数组来存储它不会浪费任何空间
+   
+   数据流中第K大元素
+	import heapq
+	class KthLargest:
+	    def __init__(self, k: int, nums: List[int]):
+		self.heap = heapq.nlargest(k,nums+[float('-inf')])
+		heapq.heapify(self.heap)  
+
+	    def add(self, val: int) -> int:
+		heapq.heappushpop(self.heap,val)
+		return self.heap[0]
+  
 10. 二叉搜索树上的大部分操作需要花费的时间跟这颗树的高度直接相关
     对于查找问题：二分查找、哈希表、二叉搜索树、顺序查找
     java里面的二叉搜索树是用红黑树实现的自平衡二叉搜索树 
